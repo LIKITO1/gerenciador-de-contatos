@@ -2,9 +2,10 @@ import Menu from "../layouts/Menu"
 function Home(){
     return(
         <>
-        <Menu/>
-            <div className="bg-blue-500 w-dvw h-dvh flex justify-center items-center flex-col">
-                <h1 className="text-4xl text-white">Gerenciador de Contatos</h1>
+        <Menu selecionado="home"/>
+            <div className="bg-blue-500 w-full h-dvh flex items-center text-center flex-col text-white font-semibold">
+                <h1 className="text-xl mt-20 mb-6">Gerencie seus contatos com facilidade</h1>
+                <p className="p-2">Uma aplicação simples e eficiente para cadastrar, editar, buscar e excluir contatos em um só lugar. Com uma interface moderna e responsiva, o sistema foi desenvolvido para oferecer praticidade, organização e rapidez no dia a dia.</p>
             </div>
         </>
     )
