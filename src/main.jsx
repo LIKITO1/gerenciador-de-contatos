@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Home from "./components/pages/Home.jsx"
 import Register from "./components/pages/Register.jsx"
 import List from "./components/pages/List.jsx"
+import Cadastro from "./components/pages/Cadastro.jsx"
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/home" element={<Home/>}/>
         <Route path="/list" element={<List/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/cadastro" element={<Cadastro/>}></Route>
       </Routes>
     </Router>
   </StrictMode>,
