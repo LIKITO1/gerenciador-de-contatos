@@ -41,7 +41,9 @@ function Cadastro(){
                 </div>
                 <button className="p-2 bg-black text-white w-[60%] rounded-xl" onClick={cadastrar}>Cadastrar</button>
             </div>
-                <Card msg="Teste"/>
+            {msg&&msg!=""&&(
+                <Card msg={msg} tipo={tipo}/>
+            )}
         </>
     )
 }
