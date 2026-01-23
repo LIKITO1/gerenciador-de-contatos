@@ -1,14 +1,18 @@
 import {useState} from "react"
+import {useNavigate} from "react-router-dom"
 import Card from "../layouts/Card"
 function Cadastro(){
+    const navigate=useNavigate()
     const [nome,setNome]=useState("")
     const [email,setEmail]=useState("")
     const [senha,setSenha]=useState("")
     const [numero,setNumero]=useState("")
     const [msg,setMsg]=useState("")
     const [tipo,setTipo]=useState("")
+    const [cardId,setCardId]=useState(0)
     async function cadastrar(e){
         e.preventDefault()
+        if(nome!=""&&email!=""&&senha!=""&&numero!=""){
         await fetch("http://localhost:8080/create",{
             method:"POST",
             headers:{
@@ -17,7 +21,22 @@ function Cadastro(){
         }).then((response)=>response.json()).then((res)=>{
             setMsg(res?.msg)
             setTipo(res?.tipo)
+            setCardId((e)=>e+1)
+            if(res?.tipo=="success"){
+                setTimeout(()=>{
+                    setMsg("Redirecionando...")
+                    redirecionar()
+                },1500)
+            }
+            function redirecionar(){
+                navigate("/home")
+            }
         })
+    }else{
+        setMsg("Preencha todos os campos")
+        setTipo("error")
+        setCardId((e)=>e+1)
+    }
     }
     return(
         <>
@@ -42,7 +61,7 @@ function Cadastro(){
                 <button className="p-2 bg-black text-white w-[60%] rounded-xl" onClick={cadastrar}>Cadastrar</button>
             </div>
             {msg&&msg!=""&&(
-                <Card msg={msg} tipo={tipo}/>
+                <Card msg={msg} tipo={tipo} key={cardId}/>
             )}
         </>
     )

@@ -1,0 +1,13 @@
+@keyframes anima{
+    from{
+        top:0;
+        opacity: 0;
+    }
+    to{
+        top:5%;
+        opacity: 1;
+    }
+}
+.aparecer{
+    animation:anima 0.5s ease;
+}
