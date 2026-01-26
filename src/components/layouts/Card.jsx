@@ -6,8 +6,10 @@ function Card({msg,tipo}){
     useEffect(()=>{
         if(tipo=="success"){
             setFundo("bg-emerald-400")
-        }else{
+        }else if(tipo=="error"){
             setFundo("bg-red-300")
+        }else{
+            setFundo("bg-yellow-300")
         }
         setTimeout(()=>{
             setDisplay("hidden")

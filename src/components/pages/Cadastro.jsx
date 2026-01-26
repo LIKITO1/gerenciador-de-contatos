@@ -25,11 +25,8 @@ function Cadastro(){
             if(res?.tipo=="success"){
                 setTimeout(()=>{
                     setMsg("Redirecionando...")
-                    redirecionar()
+                    navigate("/home")
                 },1500)
-            }
-            function redirecionar(){
-                navigate("/home")
             }
         })
     }else{
