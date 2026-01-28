@@ -1,0 +1,22 @@
+@keyframes animacao{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform:rotate(90deg);
+    }
+}
+.anima{
+    animation: animacao 0.5s ease-in-out;
+}
+@keyframes animacao1{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.anima1{
+    animation: animacao1 0.75s ease-in-out;
+}
