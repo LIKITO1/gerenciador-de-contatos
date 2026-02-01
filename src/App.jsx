@@ -24,6 +24,7 @@ function App() {
       setCardId((e)=>e+1)
       if(res.tipo=="success"){
         setTimeout(()=>{
+          localStorage.setItem("id_user",res.id)
           setMsg("Redirecionando...")
           navigate("/home")
         },1500)
