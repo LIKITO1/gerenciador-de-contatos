@@ -28,10 +28,12 @@ function List(){
             <div className="bg-blue-500 w-full h-dvh pt-6 px-3">
                 <h1 className="flex w-full font-semibold text-white items-center justify-center text-3xl">Lista de Contatos</h1>
                 {lista&&lista.length>0&&(lista.map((valor)=>(
-                    <div key={valor?._id} className="bg-linear-to-r from-blue-400 to-blue-700 mt-4 flex text-white flex-wrap justify-evenly py-5 rounded-2xl">
-                        <div className="border p-2 rounded-xl">Nome:{valor?.nome}</div>
-                        <div className="border p-2 rounded-xl">Número:{valor?.numero}</div>
-                        <button className="bg-red-500 p-2 rounded-xl mt-2">Apagar contato</button>
+                    <div key={valor?._id} className="bg-white flex flex-wrap justify-around py-4 rounded-2xl mt-4">
+                        <div className="flex flex-col">
+                            <div className="text-lg font-bold">Nome:{valor?.nome}</div>
+                            <div className="text-sm font-semibold text-gray-600">Número:{valor?.numero}</div>
+                        </div>
+                        <button className="bg-red-500 text-sm py-1 px-3 rounded-xl font-semibold text-white">Apagar</button>
                     </div>
                 )))}
                 {!lista&&(
