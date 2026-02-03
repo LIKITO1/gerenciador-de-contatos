@@ -1,7 +1,7 @@
 import './App.css'
 import Card from "./components/layouts/Card"
 import {useState} from "react"
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 function App() {
   const [email,setEmail]=useState("")
   const [senha,setSenha]=useState("")
@@ -34,21 +34,24 @@ function App() {
 }
   return (
     <>
-      <form onSubmit={logar} className="absolute w-full h-full bg-linear-to-l from-blue-300 to-green-300 flex flex-col gap-10">
-          <h1 className="mt-20 text-4xl flex items-center justify-center">Login</h1>
-          <div className="flex flex-col">
-          <label className="items-center justify-center flex">Email:</label>
-          <input type="email" className="border w-[75%] mx-auto outline-none p-1" onChange={(e)=>setEmail(e.target.value)} required/>
+    <div className="absolute w-full h-full bg-linear-to-r from-green-300 to-blue-300 flex items-center justify-center">
+      <form onSubmit={logar} className="bg-white py-5 rounded-2xl h-[80%] w-[90%] flex flex-col gap-7">
+          <h1 className="text-3xl font-bold text-center">Login</h1>
+          <div className="flex flex-col px-5 gap-1">
+          <label className="text-gray-600 text-lg px-2">Email:</label>
+          <input type="email" className="border rounded-xl p-2 outline-blue-500" onChange={(e)=>setEmail(e.target.value)} required/>
           </div>
-          <div className="flex flex-col">
-          <label className="flex items-center justify-center">Senha:</label>
-          <input type="password" className="border w-[75%] mx-auto outline-none p-1" onChange={(e)=>setSenha(e.target.value)} required/>
+          <div className="flex flex-col px-5 gap-1">
+          <label className="text-gray-600 text-lg px-2">Senha:</label>
+          <input type="password" className="border rounded-xl outline-blue-500 p-2" onChange={(e)=>setSenha(e.target.value)} required/>
           </div>
-          <button className="bg-blue-400 h-10 w-[60%] mx-auto rounded-xl font-semibold" type="submit">Logar</button>
+          <button className="bg-blue-500 h-10 w-[80%] mx-auto rounded-xl text-white font-semibold" type="submit">Logar</button>
+          <Link to="/cadastro" className="text-center text-blue-500 underline">Cadastrar</Link>
       </form>
       {msg&&msg!=""&&(
         <Card msg={msg} tipo={tipoMsg} key={cardId}/>
       )}
+      </div>
     </>
   )
 }

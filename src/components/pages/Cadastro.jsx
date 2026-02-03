@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 import Card from "../layouts/Card"
 function Cadastro(){
     const navigate=useNavigate()
@@ -34,29 +34,32 @@ function Cadastro(){
     }
     return(
         <>
-            <form onSubmit={cadastrar} className="absolute flex flex-col w-full h-full bg-blue-500 gap-4 items-center justify-center text-white">
-                <h1 className="w-full flex items-center justify-center text-3xl">Cadastrar usuário</h1>
-                <div className="flex flex-col w-full items-center justify-center">
-                <label className="text-lg">Email:</label>
-                <input type="email" className="p-2 outline-none border w-[80%] rounded-lg" onChange={(e)=>setEmail(e.target.value)} required/>
+        <div className="absolute flex w-full h-full bg-linear-to-l from-green-300 to-blue-300 gap-4 items-center justify-center">
+            <form onSubmit={cadastrar} className="bg-white p-7 rounded-xl flex flex-col gap-2">
+                <h1 className="w-full text-center text-3xl font-bold">Cadastrar usuário</h1>
+                <div className="flex flex-col w-full">
+                <label className="text-lg text-gray-600 px-2">Email:</label>
+                <input type="email" className="p-2 outline-blue-500 border rounded-lg" onChange={(e)=>setEmail(e.target.value)} required/>
                 </div>
-                <div className="flex flex-col w-full items-center justify-center">
-                    <label className="text-lg">Nome:</label>
-                    <input type="text" className="p-2 outline-none border w-[80%] rounded-lg" onChange={(e)=>setNome(e.target.value)} required/>
+                <div className="flex flex-col w-full">
+                    <label className="text-lg text-gray-600 px-2">Nome:</label>
+                    <input type="text" className="p-2 outline-blue-500 border rounded-lg" onChange={(e)=>setNome(e.target.value)} required/>
                 </div>
-                <div className="flex flex-col w-full items-center justify-center">
-                    <label className="text-lg">Senha:</label>
-                    <input type="password" className="p-2 outline-none border w-[80%] rounded-lg" onChange={(e)=>setSenha(e.target.value)} required/>
+                <div className="flex flex-col w-full">
+                    <label className="text-lg text-gray-600 px-2">Senha:</label>
+                    <input type="password" className="p-2 outline-blue-500 border rounded-lg" onChange={(e)=>setSenha(e.target.value)} required/>
                 </div>
-                <div className="flex flex-col w-full items-center justify-center">
-                    <label className="text-lg">Número de contato:</label>
-                    <input type="number" className="p-2 outline-none border w-[80%] rounded-lg" onChange={(e)=>setNumero(e.target.value)} required/>
+                <div className="flex flex-col w-full">
+                    <label className="text-lg text-gray-600 px-2">Número de contato:</label>
+                    <input type="number" className="p-2 outline-blue-500 border rounded-lg" onChange={(e)=>setNumero(e.target.value)} required/>
                 </div>
-                <button className="p-2 bg-black text-white w-[60%] rounded-xl" type="submit">Cadastrar</button>
+                <button className="p-2 bg-blue-500 text-white w-[70%] rounded-xl font-semibold mx-auto" type="submit">Cadastrar</button>
+                <Link to="/" className="text-center text-blue-500 underline">Logar</Link>
             </form>
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipo} key={cardId}/>
             )}
+            </div>
         </>
     )
 }

@@ -25,18 +25,18 @@ function Register(){
     return(
         <>
         <Menu selecionado="register"/>
-            <div className="bg-blue-500 w-full h-dvh">
-                <form className="w-full p-[8%] flex flex-col gap-10" onSubmit={adicionar}>
-                    <h1 className="text-4xl text-white flex items-center justify-center mt-6">Adicionar Contato</h1>
-                    <div className="flex flex-col items-center justify-center text-white">
-                    <label className="mb-2 text-lg">Nome:</label>
-                    <input type="text" className="border-white border-2 outline-none p-2 w-full rounded-xl" onChange={(e)=>setNome(e.target.value)} required/>
+            <div className="bg-blue-800 w-full h-full py-10 flex items-center justify-center">
+                <form className=" w-[90%] p-[8%] flex flex-col gap-5 bg-blue-400 rounded-xl" onSubmit={adicionar}>
+                    <h1 className="text-3xl text-center font-bold text-white">Adicionar Contato</h1>
+                    <div className="flex flex-col gap-1">
+                    <label className="text-lg text-white px-2">Nome:</label>
+                    <input type="text" className=" bg-white outline-none p-2 w-full rounded-xl" onChange={(e)=>setNome(e.target.value)} required/>
                     </div>
-                    <div className="flex flex-col items-center justify-center text-white">
-                    <label className="mb-2 text-lg">Número do contato:</label>
-                    <input type="number" className="border-white border-2 outline-none p-2 w-full rounded-xl" onChange={(e)=>setNumero(e.target.value)} required/>
+                    <div className="flex flex-col gap-1">
+                    <label className="text-lg text-white px-2">Número do contato:</label>
+                    <input type="number" className=" bg-white outline-none p-2 w-full rounded-xl" onChange={(e)=>setNumero(e.target.value)} required/>
                     </div>
-                    <button className="bg-black text-white p-3 rounded-2xl m-auto w-[60%]" type="submit">Adicionar</button>
+                    <button className="bg-blue-800 text-white p-3 rounded-2xl m-auto w-[60%] font-bold" type="submit">Adicionar</button>
                 </form>
             </div>
             {msg&&msg!=""&&(

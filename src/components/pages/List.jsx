@@ -5,6 +5,20 @@ function List(){
     const [lista,setLista]=useState([])
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
+    async function apagar(valor){
+        await fetch("http://localhost:8080/delete",{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            },body:JSON.stringify({id_people:valor,id_user:localStorage.getItem("id_user")})
+        }).then((response)=>response.json()).then((res)=>{
+            setMsg(res.msg)
+            setTipoMsg(res.tipo)
+            setTimeout(()=>{
+                window.location.reload()
+            },1500) 
+        })
+    }
     useEffect(()=>{
         async function requisitar(){
             await fetch("http://localhost:8080/api",{
@@ -33,7 +47,7 @@ function List(){
                             <div className="text-lg font-bold">Nome:{valor?.nome}</div>
                             <div className="text-sm font-semibold text-gray-600">Número:{valor?.numero}</div>
                         </div>
-                        <button className="bg-red-500 text-sm py-1 px-3 rounded-xl font-semibold text-white">Apagar</button>
+                        <button className="bg-red-500 text-sm py-1 px-3 rounded-xl font-semibold text-white" onClick={()=>{apagar(valor?._id)}}>Apagar</button>
                     </div>
                 )))}
                 {!lista&&(
