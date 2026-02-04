@@ -9,6 +9,7 @@ function List(){
         await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/delete",{
             method:"DELETE",
             headers:{
+                authorization:"Bearer "+localStorage.getItem("token"),
                 "Content-Type":"application/json"
             },body:JSON.stringify({id_people:valor,id_user:localStorage.getItem("id_user")})
         }).then((response)=>response.json()).then((res)=>{
