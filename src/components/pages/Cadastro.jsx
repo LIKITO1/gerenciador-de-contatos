@@ -1,6 +1,7 @@
 import {useState} from "react"
 import {useNavigate,Link} from "react-router-dom"
 import Card from "../layouts/Card"
+import Loading from "../layouts/Loading"
 function Cadastro(){
     const navigate=useNavigate()
     const [nome,setNome]=useState("")
@@ -10,15 +11,18 @@ function Cadastro(){
     const [msg,setMsg]=useState("")
     const [tipo,setTipo]=useState("")
     const [cardId,setCardId]=useState(0)
+    const [isLoading,setIsLoading]=useState(false)
     async function cadastrar(e){
         e.preventDefault()
         if(nome!=""&&email!=""&&senha!=""&&numero!=""){
+        setIsLoading(true)
         await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/create",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },body:JSON.stringify({nome,email,senha,numero})
         }).then((response)=>response.json()).then((res)=>{
+            setIsLoading(false)
             setMsg(res?.msg)
             setTipo(res?.tipo)
             setCardId((e)=>e+1)
@@ -27,6 +31,8 @@ function Cadastro(){
                     setMsg("Redirecionando...")
                     navigate("/home")
                     localStorage.setItem("id_user",res.id)
+                    localStorage.setItem("token",res.token)
+                    localStorage.setItem("nome",res.nome)
                 },1500)
             }
         })
@@ -58,6 +64,9 @@ function Cadastro(){
             </form>
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipo} key={cardId}/>
+            )}
+            {isLoading&&(
+                <Loading/>
             )}
             </div>
         </>

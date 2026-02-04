@@ -2,16 +2,19 @@ import './App.css'
 import Card from "./components/layouts/Card"
 import {useState} from "react"
 import {useNavigate,Link} from "react-router-dom"
+import Loading from "./components/layouts/Loading"
 function App() {
   const [email,setEmail]=useState("")
   const [senha,setSenha]=useState("")
   const [msg,setMsg]=useState("")
   const [tipoMsg,setTipoMsg]=useState("")
   const [cardId,setCardId]=useState(0)
+  const [isLoading,setIsLoading]=useState(false)
   const navigate=useNavigate()
   async function logar(e){
     e.preventDefault()
     if(senha!=""&&email!=""){
+          setIsLoading(true)
     await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/login",{
       method:"POST",
       headers:{
@@ -19,6 +22,7 @@ function App() {
       },
       body:JSON.stringify({email,senha})
     }).then((response)=>response.json()).then((res)=>{
+      setIsLoading(false)
       setMsg(res.msg)
       setTipoMsg(res.tipo)
       setCardId((e)=>e+1)
@@ -52,6 +56,9 @@ function App() {
       </form>
       {msg&&msg!=""&&(
         <Card msg={msg} tipo={tipoMsg} key={cardId}/>
+      )}
+            {isLoading&&(
+        <Loading/>
       )}
       </div>
     </>

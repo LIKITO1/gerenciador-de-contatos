@@ -1,11 +1,14 @@
 import {useEffect,useState} from "react"
 import Menu from "../layouts/Menu"
 import Card from "../layouts/Card"
+import Loading from "../layouts/Loading"
 function List(){
     const [lista,setLista]=useState([])
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
+    const [isLoading,setIsLoading]=useState(false)
     async function apagar(valor){
+        setIsLoading(true)
         await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/delete",{
             method:"DELETE",
             headers:{
@@ -13,6 +16,7 @@ function List(){
                 "Content-Type":"application/json"
             },body:JSON.stringify({id_people:valor,id_user:localStorage.getItem("id_user")})
         }).then((response)=>response.json()).then((res)=>{
+            setIsLoading(false)
             setMsg(res.msg)
             setTipoMsg(res.tipo)
             setTimeout(()=>{
@@ -22,6 +26,7 @@ function List(){
     }
     useEffect(()=>{
         async function requisitar(){
+            setIsLoading(true)
             await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/api",{
                 method:"POST",
                 headers:{
@@ -29,6 +34,7 @@ function List(){
                     "Content-Type":"application/json"
                 },body:JSON.stringify({id:localStorage.getItem("id_user")})
             }).then((response)=>response.json()).then((res)=>{
+                setIsLoading(false)
                 setLista(res?.contatos)
                 if(res.msg&&res.tipo){
                     setMsg(res.msg)
@@ -40,6 +46,9 @@ function List(){
     },[])
     return(
         <>
+            {isLoading&&(
+                <Loading/>
+            )}
         {localStorage.getItem("token")&&localStorage.getItem("token")!=""&&(
             <>
         <Menu selecionado="list"/>
