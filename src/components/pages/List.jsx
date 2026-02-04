@@ -6,7 +6,7 @@ function List(){
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
     async function apagar(valor){
-        await fetch("http://localhost:8080/delete",{
+        await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/delete",{
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
