@@ -1,8 +1,12 @@
+import {useState,useEffect} from "react"
 export default function PerfilIcon({className,onClick}){
-    const initial="L"
+    const [initial,setInitial]=useState("")
+    useEffect(()=>{
+        setInitial(localStorage.getItem("nome")[0])
+    },[])
     return(
         <div className={`${className} flex items-center justify-center`}>
-            <div onClick={onClick} className="ring-2 ring-blue-500 text-blue-500 w-full h-12 rounded-4xl flex items-center justify-center text-xl font-bold font-mono">{initial}</div>
+            <div onClick={onClick} className="ring-3 uppercase ring-blue-500 text-blue-500 w-full h-18 rounded-full flex items-center justify-center text-3xl font-bold">{initial}</div>
         </div>
     )
 }

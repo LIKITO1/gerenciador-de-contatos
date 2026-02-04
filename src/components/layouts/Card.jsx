@@ -11,14 +11,15 @@ function Card({msg,tipo}){
         }else{
             setFundo("bg-yellow-300")
         }
-        setTimeout(()=>{
+        const time=setTimeout(()=>{
             setDisplay("hidden")
+            clearTimeout(time)
         },3000) 
     },[tipo])
     return(
         <>
-            <div className={`absolute w-full h-[13%] text-black flex items-center justify-center mt-5 ${styles.aparecer} top-[5%] ${display}`}>
-                <p className={`${fundo} p-2 w-[80%] h-full flex items-center justify-center`}>{msg}</p>
+            <div className={`absolute w-full h-[13%] text-black flex items-center justify-center ${styles.aparecer} top-[10%] ${display}`}>
+                <p className={`${fundo} p-2 w-[90%] h-full flex items-center justify-center text-lg font-semibold`}>{msg}</p>
             </div>
         </>
     )

@@ -25,6 +25,8 @@ function App() {
       if(res.tipo=="success"){
         setTimeout(()=>{
           localStorage.setItem("id_user",res.id)
+          localStorage.setItem("nome",res.nome)
+          localStorage.setItem("token",res.token)
           setMsg("Redirecionando...")
           navigate("/home")
         },1500)
@@ -35,7 +37,7 @@ function App() {
   return (
     <>
     <div className="absolute w-full h-full bg-linear-to-r from-green-300 to-blue-300 flex items-center justify-center">
-      <form onSubmit={logar} className="bg-white py-5 rounded-2xl h-[80%] w-[90%] flex flex-col gap-7">
+      <form onSubmit={logar} className="bg-white py-5 rounded-2xl h-[60%] w-[90%] flex flex-col gap-7">
           <h1 className="text-3xl font-bold text-center">Login</h1>
           <div className="flex flex-col px-5 gap-1">
           <label className="text-gray-600 text-lg px-2">Email:</label>
