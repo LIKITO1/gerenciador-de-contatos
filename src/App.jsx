@@ -12,7 +12,7 @@ function App() {
   async function logar(e){
     e.preventDefault()
     if(senha!=""&&email!=""){
-    await fetch("http://localhost:8080/login",{
+    await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/login",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

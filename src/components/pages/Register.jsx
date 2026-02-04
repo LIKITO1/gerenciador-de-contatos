@@ -11,7 +11,7 @@ function Register(){
     const navigate=useNavigate()
     async function adicionar(e){
         e.preventDefault()
-        await fetch("http://localhost:8080/add",{
+        await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/add",{
             method:"POST",
             headers:{
                 authorization:"Bearer "+localStorage.getItem("token"),

@@ -13,7 +13,7 @@ function Cadastro(){
     async function cadastrar(e){
         e.preventDefault()
         if(nome!=""&&email!=""&&senha!=""&&numero!=""){
-        await fetch("http://localhost:8080/create",{
+        await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/create",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

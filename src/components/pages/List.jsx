@@ -21,7 +21,7 @@ function List(){
     }
     useEffect(()=>{
         async function requisitar(){
-            await fetch("http://localhost:8080/api",{
+            await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/api",{
                 method:"POST",
                 headers:{
                     authorization:"Bearer "+localStorage.getItem("token"),
