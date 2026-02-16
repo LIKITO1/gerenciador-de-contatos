@@ -1,46 +1,51 @@
 import {useEffect,useState} from "react"
 import Menu from "../layouts/Menu"
 import Card from "../layouts/Card"
+import Loading from "../layouts/Loading"
+import {requisitar} from "../../services/api"
+import {deleteService} from "../../services/deleteService"
+import CardDelete from "../layouts/CardDelete"
 function List(){
     const [lista,setLista]=useState([])
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
+    const [isLoading,setIsLoading]=useState(true)
+    const [cardDelete,setCardDelete]=useState(false)
+    const [selectedId,setSelectedId]=useState("")
     async function apagar(valor){
-        await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/delete",{
-            method:"DELETE",
-            headers:{
-                "Content-Type":"application/json"
-            },body:JSON.stringify({id_people:valor,id_user:localStorage.getItem("id_user")})
-        }).then((response)=>response.json()).then((res)=>{
+        setSelectedId(valor)
+        setCardDelete(true)
+    }
+    async function confirmation(dados){
+        if(dados){
+            setIsLoading(true)
+            const res=await deleteService(selectedId)
             setMsg(res.msg)
             setTipoMsg(res.tipo)
-            setTimeout(()=>{
-                window.location.reload()
+            setTimeout(async()=>{
+                const response=await requisitar()
+                setLista(response?.contatos)
+                setCardDelete(false)
             },1500) 
-        })
+        }else{
+            setCardDelete(false)
+        }
     }
     useEffect(()=>{
-        async function requisitar(){
-            await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/api",{
-                method:"POST",
-                headers:{
-                    authorization:"Bearer "+localStorage.getItem("token"),
-                    "Content-Type":"application/json"
-                },body:JSON.stringify({id:localStorage.getItem("id_user")})
-            }).then((response)=>response.json()).then((res)=>{
-                setLista(res?.contatos)
-                if(res.msg&&res.tipo){
-                    setMsg(res.msg)
-                    setTipoMsg(res.tipo)
-                }
-            })
-        }
-        requisitar()
+        async function chama(){
+            const data=await requisitar()
+            setLista(data?.contatos)
+            setIsLoading(false)
+        }   
+        chama()
     },[])
     return(
         <>
         {localStorage.getItem("token")&&localStorage.getItem("token")!=""&&(
             <>
+            {cardDelete&&(
+                <CardDelete confirmation={confirmation}/>
+            )}
         <Menu selecionado="list"/>
             <div className="bg-blue-500 w-full h-[80dvh] pt-6 px-3">
                 <h1 className="flex w-full font-semibold text-white items-center justify-center text-4xl">Lista de Contatos</h1>
@@ -61,6 +66,9 @@ function List(){
         )}
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipoMsg}/>
+            )}
+            {isLoading&&(
+                <Loading/>
             )}
         </>
     )
