@@ -2,33 +2,30 @@ import Menu from "../layouts/Menu"
 import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import Card from "../layouts/Card"
+import { addService } from "../../services/addService"
+import Loading from "../layouts/Loading"
 function Register(){
     const [numero,setNumero]=useState("")
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
     const [cardId,setCardId]=useState(0)
+    const [isLoading,setIsLoading]=useState(false)
     const idUser=localStorage.getItem("id_user")
     const navigate=useNavigate()
     async function adicionar(e){
         e.preventDefault()
-        await fetch("https://backend-gerenciador-de-contatos-n58u.onrender.com/add",{
-            method:"POST",
-            headers:{
-                authorization:"Bearer "+localStorage.getItem("token"),
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({numero,idUser})
-        }).then((response)=>response.json()).then((res)=>{
-            setMsg(res.msg)
-            setTipoMsg(res.tipo)
-            setCardId((e)=>e+1)
-            if(res.tipo=="success"){
-            setTimeout(()=>{
-                setMsg("Redirecionando...")
-                navigate("/list")
-            },1500)
-        }
-        })
+        setIsLoading(true)
+        const res=await addService(numero,idUser)
+        setMsg(res.msg)
+        setTipoMsg(res.tipo)
+        setCardId((e)=>e+1)
+        setIsLoading(false)
+        if(res.tipo=="success"){
+        setTimeout(()=>{
+            setMsg("Redirecionando...")
+            navigate("/list")
+        },1500)
+    }
     }
     return(
         <>
@@ -45,6 +42,9 @@ function Register(){
             </div>
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipoMsg} key={cardId}/>
+            )}
+            {isLoading&&(
+                <Loading/>
             )}
         </>
     )

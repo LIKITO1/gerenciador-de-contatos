@@ -9,7 +9,7 @@ function List(){
     const [lista,setLista]=useState([])
     const [msg,setMsg]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
-    const [isLoading,setIsLoading]=useState(true)
+    const [isLoading,setIsLoading]=useState(false)
     const [cardDelete,setCardDelete]=useState(false)
     const [selectedId,setSelectedId]=useState("")
     async function apagar(valor){
@@ -26,6 +26,7 @@ function List(){
                 const response=await requisitar()
                 setLista(response?.contatos)
                 setCardDelete(false)
+                setIsLoading(false)
             },1500) 
         }else{
             setCardDelete(false)
@@ -33,14 +34,18 @@ function List(){
     }
     useEffect(()=>{
         async function chama(){
+            setIsLoading(true)
             const data=await requisitar()
-            setLista(data?.contatos)
             setIsLoading(false)
+            setLista(data?.contatos)
         }   
         chama()
     },[])
     return(
         <>
+        {isLoading&&(
+                <Loading/>
+            )}
         {localStorage.getItem("token")&&localStorage.getItem("token")!=""&&(
             <>
             {cardDelete&&(
@@ -66,9 +71,6 @@ function List(){
         )}
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipoMsg}/>
-            )}
-            {isLoading&&(
-                <Loading/>
             )}
         </>
     )
