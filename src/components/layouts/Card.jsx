@@ -18,8 +18,8 @@ function Card({msg,tipo}){
     },[tipo])
     return(
         <>
-            <div className={`absolute w-full h-[13%] text-black flex items-center justify-center ${styles.aparecer} top-[10%] ${display}`}>
-                <p className={`${fundo} p-2 w-[90%] h-full flex items-center justify-center text-lg font-semibold`}>{msg}</p>
+            <div className={`absolute w-full h-[13%] text-black flex items-center justify-center ${styles.aparecer} top-[10%] md:top-[15%] ${display}`}>
+                <p className={`${fundo} p-2 w-[90%] md:w-[75%] h-full flex items-center justify-center text-lg font-semibold`}>{msg}</p>
             </div>
         </>
     )

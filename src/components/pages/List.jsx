@@ -55,12 +55,12 @@ function List(){
             <div className="bg-blue-500 w-full h-[80dvh] pt-6 px-3">
                 <h1 className="flex w-full font-semibold text-white items-center justify-center text-4xl">Lista de Contatos</h1>
                 {lista&&lista.length>0&&(lista.map((valor)=>(
-                    <div key={valor?._id} className="bg-white flex flex-wrap justify-around py-4 rounded-2xl mt-6">
+                    <div key={valor?._id} className="bg-white w-[90%] mx-auto flex flex-wrap justify-evenly py-4 rounded-2xl mt-6 sm:w-[70%] lg:w-[60%]">
                         <div className="flex flex-col">
                             <div className="text-xl font-bold">Nome:{valor?.nome}</div>
                             <div className="text-md font-semibold text-gray-600">Número:{valor?.numero}</div>
                         </div>
-                        <button className="bg-red-500 text-md py-2 px-3 rounded-xl font-semibold text-white" onClick={()=>{apagar(valor?._id)}}>Apagar</button>
+                        <button className="bg-red-500 text-md py-2 px-3 rounded-xl font-semibold text-white hover:cursor-pointer" onClick={()=>{apagar(valor?._id)}}>Apagar</button>
                     </div>
                 )))}
                 {!lista&&(

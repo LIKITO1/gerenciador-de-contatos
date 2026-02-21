@@ -34,8 +34,8 @@ function Cadastro(){
     }
     return(
         <>
-        <div className="absolute flex w-full h-full bg-linear-to-l from-green-300 to-blue-300 gap-4 items-center justify-center">
-            <form onSubmit={cadastrar} className="bg-white p-7 rounded-xl flex flex-col gap-3 w-[90%]">
+        <div className="absolute flex w-full h-full bg-linear-to-l from-blue-800 to-blue-300 gap-4 items-center justify-center">
+            <form onSubmit={cadastrar} className="bg-white p-7 rounded-xl flex flex-col gap-3 w-[90%] sm:w-[65%] lg:w-[50%]">
                 <h1 className="w-full text-center text-3xl font-bold">Cadastrar usuário</h1>
                 <div className="flex flex-col w-full">
                 <label className="text-lg text-gray-600 px-2">Email:</label>
@@ -53,7 +53,7 @@ function Cadastro(){
                     <label className="text-lg text-gray-600 px-2">Número de contato:</label>
                     <input type="number" className="p-2 outline-blue-500 border rounded-lg" onChange={(e)=>setNumero(e.target.value)} required/>
                 </div>
-                <button className="p-2 bg-blue-500 text-white w-[70%] rounded-xl font-semibold mx-auto" type="submit">Cadastrar</button>
+                <button className="p-2 bg-blue-500 text-white w-[70%] rounded-xl font-semibold mx-auto hover:cursor-pointer" type="submit">Cadastrar</button>
                 <Link to="/" className="text-center text-blue-500 underline">Logar</Link>
             </form>
             {msg&&msg!=""&&(

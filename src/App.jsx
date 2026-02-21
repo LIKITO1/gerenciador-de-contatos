@@ -40,8 +40,8 @@ function App() {
 }
   return (
     <>
-    <div className="absolute w-full h-full bg-linear-to-r from-green-300 to-blue-300 flex items-center justify-center">
-      <form onSubmit={logar} className="bg-white py-5 rounded-2xl h-[60%] w-[90%] flex flex-col gap-7">
+    <div className="absolute w-full h-full bg-linear-to-r from-blue-800 to-blue-300 flex items-center justify-center">
+      <form onSubmit={logar} className="bg-white py-5 rounded-2xl h-[60%] w-[90%] sm:w-[65%] lg:w-[50%] xl:h-[70%] flex flex-col gap-7">
           <h1 className="text-3xl font-bold text-center">Login</h1>
           <div className="flex flex-col px-5 gap-1">
           <label className="text-gray-600 text-lg px-2">Email:</label>
@@ -51,7 +51,7 @@ function App() {
           <label className="text-gray-600 text-lg px-2">Senha:</label>
           <input type="password" className="border rounded-xl outline-blue-500 p-2" onChange={(e)=>setSenha(e.target.value)} required/>
           </div>
-          <button className="bg-blue-500 h-10 w-[80%] mx-auto rounded-xl text-white font-semibold" type="submit">Logar</button>
+          <button className="bg-blue-500 h-10 xl:p-5 w-[80%] mx-auto rounded-xl text-white font-semibold flex items-center justify-center hover:cursor-pointer" type="submit">Logar</button>
           <Link to="/cadastro" className="text-center text-blue-500 underline">Cadastrar</Link>
       </form>
       {msg&&msg!=""&&(
