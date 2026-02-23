@@ -10,6 +10,9 @@ function Cadastro(){
     const [msg,setMsg]=useState("")
     const [tipo,setTipo]=useState("")
     const [cardId,setCardId]=useState(0)
+    if(localStorage.getItem("nome")){
+        navigate("/home")
+    }
     async function cadastrar(e){
         e.preventDefault()
         if(nome!=""&&email!=""&&senha!=""&&numero!=""){

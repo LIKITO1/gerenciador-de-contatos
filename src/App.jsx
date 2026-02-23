@@ -11,6 +11,9 @@ function App() {
   const [cardId,setCardId]=useState(0)
   const [isLoading,setIsLoading]=useState(false)
   const navigate=useNavigate()
+  if(localStorage.getItem("nome")){
+      navigate("/home")
+  }
   async function logar(e){
     e.preventDefault()
     setIsLoading(true)

@@ -16,8 +16,8 @@ function List(){
         setSelectedId(valor)
         setCardDelete(true)
     }
-    async function confirmation(dados){
-        if(dados){
+    async function confirmation(confirma){
+        if(confirma){
             setIsLoading(true)
             const res=await deleteService(selectedId)
             setMsg(res.msg)
@@ -43,16 +43,17 @@ function List(){
     },[])
     return(
         <>
-        {isLoading&&(
-                <Loading/>
-            )}
         {localStorage.getItem("token")&&localStorage.getItem("token")!=""&&(
             <>
             {cardDelete&&(
                 <CardDelete confirmation={confirmation}/>
             )}
         <Menu selecionado="list"/>
-            <div className="bg-blue-500 w-full h-[80dvh] pt-6 px-3">
+        <div className="bg-blue-500 w-full h-[80dvh] pt-6 px-3">
+            {isLoading?(
+                <Loading/>
+            ):(
+                <>
                 <h1 className="flex w-full font-semibold text-white items-center justify-center text-4xl">Lista de Contatos</h1>
                 {lista&&lista.length>0&&(lista.map((valor)=>(
                     <div key={valor?._id} className="bg-white w-[90%] mx-auto flex flex-wrap justify-evenly py-4 rounded-2xl mt-6 sm:w-[70%] lg:w-[60%]">
@@ -66,6 +67,8 @@ function List(){
                 {!lista&&(
                     <h3 className="text-white font-semibold mt-30 flex justify-center items-center text-2xl">Nenhum contato adicionado</h3>
                 )}
+                </>
+            )}
             </div>
             </>
         )}

@@ -29,6 +29,9 @@ function Register(){
     }
     return(
         <>
+        {isLoading&&(
+                <Loading/>
+            )}
         <Menu selecionado="register"/>
             <div className="bg-blue-800 w-full h-[80dvh] flex items-center justify-center">
                 <form className="p-7 flex flex-col gap-8 bg-blue-400 rounded-xl w-[90%] sm:w-[70%] sm:h-[60%] lg:w-[50%] xl:h-[70%] xl:w-[40%]" onSubmit={adicionar}>
@@ -42,9 +45,6 @@ function Register(){
             </div>
             {msg&&msg!=""&&(
                 <Card msg={msg} tipo={tipoMsg} key={cardId}/>
-            )}
-            {isLoading&&(
-                <Loading/>
             )}
         </>
     )
