@@ -1,8 +1,7 @@
-import './App.css'
 import Card from "./components/layouts/Card"
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import {useNavigate,Link} from "react-router-dom"
-import Loading from "./components/layouts/Loading"
+import FirstLoading from './components/layouts/FirstLoading'
 function App() {
   const [email,setEmail]=useState("")
   const [senha,setSenha]=useState("")
@@ -11,9 +10,11 @@ function App() {
   const [cardId,setCardId]=useState(0)
   const [isLoading,setIsLoading]=useState(false)
   const navigate=useNavigate()
-  if(localStorage.getItem("nome")){
-      navigate("/home")
-  }
+  useEffect(()=>{
+    if(localStorage.getItem("nome")){
+        navigate("/home")
+    }
+  },[])
   async function logar(e){
     e.preventDefault()
     setIsLoading(true)
@@ -61,7 +62,7 @@ function App() {
         <Card msg={msg} tipo={tipoMsg} key={cardId}/>
       )}
       {isLoading&&(
-        <Loading/>
+        <FirstLoading/>
       )}
       </div>
     </>
